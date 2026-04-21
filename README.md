@@ -1,28 +1,34 @@
+# ML Final Project
+
 ## Dev Setup
 
-### Initialization
-use jupyter/scipy-notebook since it has all the packages we need\
+Use `jupyter/scipy-notebook` so the notebook has the packages it needs.
 
-**Make sure Docker Desktop is opened**
+Make sure Docker Desktop is running, then start the notebook container:
+
 ```bash
-$: docker pull jupyter/scipy-notebook 
-$: docker run -it --name jupyter -p 8888:8888 -v $(pwd):/home/jovyan/work jupyter/scipy-notebook start-notebook.sh --NotebookApp.token=''
+docker pull jupyter/scipy-notebook
+docker run -it --name jupyter -p 8888:8888 -v $(pwd):/home/jovyan/work jupyter/scipy-notebook start-notebook.sh --NotebookApp.token=''
 ```
-Then, use the localhost server url as the jupyter kernel. (top right corner of the notebook if you are using vscode)\
-Set display name (optional)\
-Select Python 3 ipykernel
 
-### Starting Container
+Then connect to the local Jupyter server from VS Code and select the Python 3 kernel.
+
+To restart the container later:
+
 ```bash
-$: docker start jupyter
+docker start jupyter
 ```
-this will start the container and expose the server
 
-### Cleanup Container
+To stop it:
+
 ```bash
-$: docker stop jupyter
+docker stop jupyter
 ```
-this will stop the docker container
 
-!! Make sure you are saving and accessing files in the work/ directory. \
-work/ is where all the code and data are (you can think of it as a renamed MLFinalProject directory) !!
+All project files should be saved in `/home/jovyan/work`, which is mapped to this repo directory on your machine.
+
+If you need to copy a file out of Docker manually:
+
+```bash
+docker cp jupyter:/home/jovyan/work/<FILE_NAME> .
+```
