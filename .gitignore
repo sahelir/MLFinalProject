@@ -1,5 +1,5 @@
 sample_submission.csv
 test.csv
-train.csv
+train*.csv
 train_clean.csv
 train_trimmed.csv
